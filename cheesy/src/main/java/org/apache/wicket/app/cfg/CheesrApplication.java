@@ -7,8 +7,12 @@ import java.util.List;
 import org.apache.wicket.Application;
 import org.apache.wicket.Page;
 import org.apache.wicket.RuntimeConfigurationType;
+import org.apache.wicket.Session;
+import org.apache.wicket.app.session.CheesrSession;
 import org.apache.wicket.domain.model.Cheese;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.request.Request;
+import org.apache.wicket.request.Response;
 
 /**
  * Classe responsável por inicializar e configurar a Aplicação.
@@ -40,24 +44,22 @@ public class CheesrApplication extends WebApplication {
 				.println("-- WICKET APPLICATION: DEVELOPMENT MODE CONFIGURATION --");
 		setConfigurationType(RuntimeConfigurationType.DEVELOPMENT);
 	}
-	
-	
+
 	/**
 	 * Inicializa a aplicação
 	 */
 	@Override
 	protected void init() {
 	}
-	
+
 	/**
 	 * 
 	 * @return CheesrApplication - Retorna a aplicação
 	 */
 	public static CheesrApplication get() {
 		return (CheesrApplication) Application.get();
-		}
+	}
 
-	
 	/**
 	 * Configura a home page.
 	 */
@@ -67,14 +69,13 @@ public class CheesrApplication extends WebApplication {
 		return null;
 	}
 
-
 	public List<Cheese> getCheeses() {
 		return Collections.unmodifiableList(cheeses);
 	}
-	
-	
-	
 
-	
+	@Override
+	public Session newSession(Request request, Response response) {
+		return new CheesrSession(request);
+	}
 
 }
