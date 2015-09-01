@@ -9,6 +9,17 @@ public class Cheese implements Serializable {
 	private String name;
 	private String description;
 	private double price;
+	
+	public Cheese(){
+		
+	}
+
+	public Cheese(String name, String description, double price) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.price = price;
+	}
 
 	// Getters and Setters
 	public String getName() {
