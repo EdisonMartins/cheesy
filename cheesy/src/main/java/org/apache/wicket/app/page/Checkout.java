@@ -6,7 +6,9 @@ import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.validation.validator.StringValidator;
 
 public class Checkout extends CheesrPage {
 
@@ -15,15 +17,22 @@ public class Checkout extends CheesrPage {
 	@SuppressWarnings("serial")
 	public Checkout() {
 		System.out.println("Checkout()");
-		Form<Address> form = new Form<>("Form");
+		
+		add(new FeedbackPanel("feedback"));
+		
+		Form<Address> form = new Form<>("form");
 		add(form);
 
 		Address address = getCart().getBillingAddress();
 
-		form.add(new TextField<>("name", new PropertyModel<>(address, "name")));
-		form.add(new TextField<>("street", new PropertyModel<>(address, "street")));
-		form.add(new TextField<>("zipCode", new PropertyModel<>(address, "zipCode")));
-		form.add(new TextField<>("city", new PropertyModel<>(address, "city")));
+		form.add(new TextField<>("name", new PropertyModel<>(address, "name"))
+				.setRequired(true)
+				.add(StringValidator.lengthBetween(5, 32)));
+		
+		
+		form.add(new TextField<>("street", new PropertyModel<>(address, "street")).setRequired(true));
+		form.add(new TextField<>("zipCode", new PropertyModel<>(address, "zipCode")).setRequired(true));
+		form.add(new TextField<>("city", new PropertyModel<>(address, "city")).setRequired(true));
 
 		form.add(new Link<Address>("cancel") {
 
@@ -31,7 +40,7 @@ public class Checkout extends CheesrPage {
 
 			@Override
 			public void onClick() {
-				setResponsePage(Index.class);
+				setResponsePage(IndexPage.class);
 
 			}
 		});
@@ -45,7 +54,7 @@ public class Checkout extends CheesrPage {
 				// clean out shopping cart
 				cart.getCheeses().clear();
 				// return to front page
-				setResponsePage(Index.class);
+				setResponsePage(IndexPage.class);
 			}
 		});
 

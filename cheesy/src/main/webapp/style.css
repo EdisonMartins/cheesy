@@ -36,9 +36,8 @@ div {
 
 #header {
 	width: 100%;
-	height: 150px;
 	backgrounwidth: 100%;
-	height: 150px;
+	height: 250px;
 	background: url(logo.png) center no-repeat;
 	d: url(logo.png) center no-repeat;
 }

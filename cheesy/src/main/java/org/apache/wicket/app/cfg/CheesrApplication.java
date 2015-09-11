@@ -8,7 +8,7 @@ import org.apache.wicket.Application;
 import org.apache.wicket.Page;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.Session;
-import org.apache.wicket.app.page.Index;
+import org.apache.wicket.app.page.IndexPage;
 import org.apache.wicket.app.session.CheesrSession;
 import org.apache.wicket.domain.model.Cheese;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -67,7 +67,7 @@ public class CheesrApplication extends WebApplication {
 	@Override
 	public Class<? extends Page> getHomePage() {
 		// TODO Auto-generated method stub
-		return Index.class;
+		return IndexPage.class;
 	}
 
 	public List<Cheese> getCheeses() {
