@@ -5,20 +5,19 @@ import org.apache.wicket.domain.model.Cheese;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
-import org.apache.wicket.model.PropertyModel;
 
 public class IndexPage extends CheesrPage {
 
 	private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings({ "serial", "rawtypes" })
 	public IndexPage() {
 
 		//O número 5 é o número de itens que aparecerá na página
 		PageableListView<Cheese> cheeses = new PageableListView<Cheese>("cheeses", getCheeses(), 5) {
+
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			protected void populateItem(ListItem<Cheese> item) {
@@ -28,6 +27,8 @@ public class IndexPage extends CheesrPage {
 				item.add(new Label("price", "$" + cheese.getName()));
 
 				item.add(new Link<Cheese>("add", item.getModel()) {
+
+					private static final long serialVersionUID = 1L;
 
 					@Override
 					public void onClick() {
@@ -47,6 +48,8 @@ public class IndexPage extends CheesrPage {
 		add(new PagingNavigator("navigator", cheeses));
 		add(new ShoppingCartPanel("shoppingcart", getCart()));
 		add(new Link<Cheese>("checkout") {
+
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void onClick() {
