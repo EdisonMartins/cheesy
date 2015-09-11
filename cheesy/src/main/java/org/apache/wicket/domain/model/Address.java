@@ -8,7 +8,7 @@ public class Address implements Serializable {
 
 	private String name;
 	private String street;
-	private String cep;
+	private String zipCode;
 	private String city;
 
 	// Getters and Setters
@@ -28,12 +28,12 @@ public class Address implements Serializable {
 		this.street = street;
 	}
 
-	public String getCep() {
-		return cep;
+	public String getZipCode() {
+		return zipCode;
 	}
 
-	public void setCep(String cep) {
-		this.cep = cep;
+	public void setZipCode(String cep) {
+		this.zipCode = cep;
 	}
 
 	public String getCity() {
@@ -48,7 +48,7 @@ public class Address implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cep == null) ? 0 : cep.hashCode());
+		result = prime * result + ((zipCode == null) ? 0 : zipCode.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((street == null) ? 0 : street.hashCode());
 		return result;
@@ -63,10 +63,10 @@ public class Address implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Address other = (Address) obj;
-		if (cep == null) {
-			if (other.cep != null)
+		if (zipCode == null) {
+			if (other.zipCode != null)
 				return false;
-		} else if (!cep.equals(other.cep))
+		} else if (!zipCode.equals(other.zipCode))
 			return false;
 		if (name == null) {
 			if (other.name != null)
